@@ -231,6 +231,10 @@ pub enum Action {
     /// Toggle simple fullscreen on macOS.
     ToggleSimpleFullscreen,
 
+    /// Show the Emoji & Symbols window on macos.
+    #[cfg(target_os = "macos")]
+    ShowEmojiAndSymbols,
+
     /// Clear active selection.
     ClearSelection,
 
@@ -605,6 +609,7 @@ pub fn platform_key_bindings() -> Vec<KeyBinding> {
         "b",    ModifiersState::SUPER, ~BindingMode::SEARCH;                   Action::SearchBackward;
         "+" => KeyLocation::Numpad, ModifiersState::SUPER;                     Action::IncreaseFontSize;
         "-" => KeyLocation::Numpad, ModifiersState::SUPER;                     Action::DecreaseFontSize;
+        Space,          ModifiersState::SUPER | ModifiersState::CONTROL; Action::ShowEmojiAndSymbols;
     )
 }
 

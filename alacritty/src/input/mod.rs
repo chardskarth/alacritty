@@ -317,6 +317,8 @@ impl<T: EventListener> Execute<T> for Action {
             #[cfg(target_os = "macos")]
             Action::ToggleSimpleFullscreen => ctx.window().toggle_simple_fullscreen(),
             #[cfg(target_os = "macos")]
+            Action::ShowEmojiAndSymbols => ctx.window().show_emoji_and_symbols(),
+            #[cfg(target_os = "macos")]
             Action::Hide => ctx.event_loop().hide_application(),
             #[cfg(target_os = "macos")]
             Action::HideOtherApplications => ctx.event_loop().hide_other_applications(),
