@@ -43,6 +43,9 @@ use crate::config::window::{Decorations, Identity, WindowConfig};
 use crate::config::UiConfig;
 use crate::display::SizeInfo;
 
+#[cfg(target_os = "macos")]
+use cocoa::{appkit::NSApp};
+
 /// Window icon for `_NET_WM_ICON` property.
 #[cfg(all(feature = "x11", not(any(target_os = "macos", windows))))]
 static WINDOW_ICON: &[u8] = include_bytes!("../../extra/logo/compat/alacritty-term.png");
@@ -409,6 +412,15 @@ impl Window {
     #[cfg(target_os = "macos")]
     pub fn set_simple_fullscreen(&self, simple_fullscreen: bool) {
         self.window.set_simple_fullscreen(simple_fullscreen);
+    }
+
+    #[cfg(target_os = "macos")]
+    pub fn show_emoji_and_symbols(&self) {
+        unsafe {
+            let app = NSApp();
+            assert_ne!(app, nil);
+            let () = msg_send![app, orderFrontCharacterPalette: nil];
+        }
     }
 
     pub fn set_ime_allowed(&self, allowed: bool) {

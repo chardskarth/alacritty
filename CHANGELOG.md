@@ -272,6 +272,7 @@ Notable changes to the `alacritty_terminal` crate are documented in its
 
 ### Added
 
+- Add keybinding to open "Emoji & Symbols" input dialog on macOS
 - Track and report surface damage information to Wayland compositors
 - Escape sequence for undercurl, dotted and dashed underlines (`CSI 4 : [3-5] m`)
 - `ToggleMaximized` key binding action to (un-)maximize the active window, not bound by default
