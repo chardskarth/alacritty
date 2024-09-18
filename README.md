@@ -16,6 +16,7 @@ much more. I basically added 2 features on top of alacritty:
 
 1. [Smooth cursor animation](GregTheMadMonk/alacritty-smooth-cursor)
 2. (wip) Emoji picker based [on this discussion](https://github.com/alacritty/alacritty/issues/1895)
+3. [Alacritty bg](https://codeberg.org/HanY/alacritty-bg/commits/branch/master)
 
 ## About
 

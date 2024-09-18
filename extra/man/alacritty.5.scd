@@ -149,6 +149,13 @@ This section documents the *[window]* table of the configuration file.
 
 	Default: _1.0_
 
+*background_image* = _"None"_ | { path = _"<string>"_}
+	Background image.
+
+	Full path to the background image. Override the background color.
+
+	Default: _"None"_
+
 *blur* = _true_ | _false_ # _(works on macOS/KDE Wayland)_
 
 	Request compositor to blur content behind transparent windows.
