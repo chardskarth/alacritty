@@ -787,7 +787,8 @@ impl Display {
         // Make sure this window's OpenGL context is active.
         self.make_current();
 
-        self.renderer.clear(background_color, config.window_opacity());
+        self.renderer.draw_background( background_color, &config, &size_info);
+
         let mut lines = RenderLines::new();
 
         // Optimize loop hint comparator.
