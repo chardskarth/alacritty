@@ -496,6 +496,7 @@ pub enum EventType {
     BlinkCursorTimeout,
     SearchNext,
     Frame,
+    BackgroundVideo
 }
 
 impl From<TerminalEvent> for EventType {
@@ -1751,6 +1752,7 @@ impl input::Processor<EventProxy, ActionContext<'_, Notifier, EventProxy>> {
                     TerminalEvent::CursorBlinkingChange => self.ctx.update_cursor_blinking(),
                     TerminalEvent::Exit | TerminalEvent::ChildExit(_) | TerminalEvent::Wakeup => (),
                 },
+                EventType::BackgroundVideo => *self.ctx.dirty = true,
                 #[cfg(unix)]
                 EventType::IpcConfig(_) => (),
                 EventType::Message(_)

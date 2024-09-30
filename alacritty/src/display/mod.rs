@@ -787,7 +787,13 @@ impl Display {
         // Make sure this window's OpenGL context is active.
         self.make_current();
 
-        self.renderer.draw_background( background_color, &config, &size_info);
+        self.renderer.draw_background(
+            background_color,
+            &config,
+            &size_info,
+            scheduler,
+            self.window.id(),
+        );
 
         let mut lines = RenderLines::new();
 

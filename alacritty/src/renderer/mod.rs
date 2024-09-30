@@ -14,20 +14,22 @@ use unicode_width::UnicodeWidthChar;
 
 use alacritty_terminal::index::Point;
 use alacritty_terminal::term::cell::Flags;
+use winit::window::WindowId;
 
-use crate::config::{UiConfig, debug::RendererPreference};
+use crate::config::{debug::RendererPreference, UiConfig};
 use crate::display::color::Rgb;
 use crate::display::content::RenderableCell;
 use crate::display::SizeInfo;
 use crate::gl;
 use crate::renderer::rects::{RectRenderer, RenderRect};
 use crate::renderer::shader::ShaderError;
+use crate::scheduler::Scheduler;
 
+mod background;
 pub mod platform;
 pub mod rects;
 mod shader;
 mod text;
-mod background;
 
 pub use text::{GlyphCache, LoaderApi};
 
@@ -287,9 +289,16 @@ impl Renderer {
         }
     }
 
-    pub fn draw_background(&mut self, color: Rgb, config: &UiConfig, size_info: &SizeInfo) {
-        if let Some(path) = &config.window.background_image {
-            self.background_renderer.set_background(path);
+    pub fn draw_background(
+        &mut self,
+        color: Rgb,
+        config: &UiConfig,
+        size_info: &SizeInfo,
+        scheduler: &mut Scheduler,
+        window_id: WindowId,
+    ) {
+        if let Some(path) = &config.window.background {
+            self.background_renderer.set_background(path, scheduler, window_id);
         }
 
         if self.background_renderer.should_draw() {
